@@ -1,0 +1,104 @@
+<div class="container">
+    <h2>My Form</h2>
+    <form [formGroup] = "form" (submit) = "submit()"> 
+        <!-- Alphabets Only -->
+        <div class="form-group">
+            <label for="alpha">Only Alphabets</label>
+            <input type="text" name="alpha" id="alpha" formControlName = "alpha" class = "form-control"
+            placeholder="Enter only Alphabets" appAlphaOnly/>
+        </div>
+
+        <!-- Only Alphanumeric -->
+        <div class="form-group">
+            <label for="alphanumeric">Only Alphanumeric</label>
+            <input type="text" name="alphanumeric" id="alphanumeric" formControlName = "alphanumeric" class = "form-control"
+            placeholder="Enter only Alphabets and Numbers" appAlphaNumericOnly/>
+        </div>
+
+        <!-- Numerics Only -->
+        <div class="form-group">
+            <label for="numeric">Only Numerics</label>
+            <input type="text" name="numeric" id="numeric" formControlName = "numeric" class = "form-control"
+            placeholder="Enter only Numbers" appNumericOnly/>
+        </div>
+
+        <!-- Alphabets and Spaces only -->
+        <div class="form-group">
+            <label for="alphaspace">Only Alphabets and Spaces</label>
+            <input type="text" name="alphaspace" id="alphaspace" formControlName = "alphaspace" class = "form-control"
+            placeholder="Enter only Alphabets and Spaces" appAlphaSpaceOnly/>
+        </div>
+
+        <!-- CNIC -->
+        <div class="form-group">
+            <label for="cnic">CNIC</label>
+            <input type="number" name="cnic" id="cnic" formControlName = "cnic" class = "form-control"
+            placeholder="Enter CNIC without Dashes" maxlength = 13/>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="number" name="phone" id="phone" formControlName = "phone" class = "form-control"
+            placeholder="Enter phone number"/>
+        </div>
+
+        <!-- Username -->
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" name="username" id="username" formControlName = "username" class = "form-control"
+            placeholder="Enter only Alphabets, Underscores or Dashes" appUsername/>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password" [ngClass]="form.controls['password'].invalid ? 'text-danger' : ''">Password</label>
+            <input type="password" name="password" id="password" formControlName = "password" class = "form-control"
+            placeholder="Enter the Password" [ngClass]="form.controls['password'].invalid ? 'is-invalid' : ''"/>
+
+            <label class="col" [ngClass]="form.controls['password'].hasError('required') || form.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                <i class="material-icons">
+                  {{ form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('minlength') ? 'cancel' :
+                  'check_circle' }}
+                </i>
+                Must be at least 8 characters!
+              </label>
+              <label class="col" [ngClass]="form.controls['password'].hasError('required') || form.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                <i class="material-icons">
+                  {{ form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasNumber') ? 'cancel' :
+                  'check_circle' }}
+                </i>
+                Must contain at least 1 number!
+              </label>
+              <label class="col" [ngClass]="form.controls['password'].hasError('required') || form.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+                <i class="material-icons">
+                  {{ form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
+                  'check_circle' }}
+                </i>
+                Must contain at least 1 in Capital Case!
+              </label>
+              <label class="col" [ngClass]="form.controls['password'].hasError('required') || form.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+                <i class="material-icons">
+                  {{ form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasSmallCase') ? 'cancel' :
+                  'check_circle' }}
+                </i>
+                Must contain at least 1 Letter in Small Case!
+              </label>
+              <label class="col" [ngClass]="form.controls['password'].hasError('required') || form.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+                <i class="material-icons">
+                  {{ form.controls['password'].hasError('required') ||
+                  form.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
+                  'check_circle' }}
+                </i>
+                Must contain at least 1 Special Character!
+              </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>

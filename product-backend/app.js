@@ -3,15 +3,18 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import routes from './routes/index.js';
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
 
 /**
     * Connect to the database
     */
 
-mongoose.connect('mongodb://localhost/product-db');
-
+mongoose.connect('mongodb://localhost/product-db'); 
+ 
 /**
     * Middleware
     */

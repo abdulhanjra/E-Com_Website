@@ -1,1 +1,32 @@
-<p>list works!</p>
+<h1>Products List</h1>
+
+<a routerLink="/product-form" class="btn btn-sm btn-primary mr-1">Add</a>
+
+<h4>Hello!</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Product Name</th>
+            <th style="width: 30%">Category</th>
+            <th style="width: 30%">Price</th>
+            <th style="width: 30%">Tags</th>
+            <th style="width: 30%">Description</th>
+            <th style="width: 15%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td> 
+            <td style="white-space: nowrap">
+                <a routerLink="/edit/:id" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button class="btn btn-sm btn-danger btn-delete-user" [disabled]>
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
