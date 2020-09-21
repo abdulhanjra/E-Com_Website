@@ -11,25 +11,27 @@ export class MyFormComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private fb: FormBuilder){
-    this.form = this.passVal();
+    //this.form = this.passVal();
 
   }
 
   ngOnInit(): void {
-    this.create()
+    this.create();
+    this.passVal()
   }
-create(){
-    this.form = this.fb.group({
-      alpha: [''],
-      alphanumeric: [''],
-      numeric: [''],
-      alphaspace: [''],
-      cnic: [''],
-      phone: [''],
-      username: [''],
-      password: ['']
-    })
-}
+
+  create(){
+      this.form = this.fb.group({
+        alpha: [''],
+        alphanumeric: [''],
+        numeric: [''],
+        alphaspace: [''],
+        cnic: [''],
+        phone: [''],
+        username: [''],
+        password: ['']
+      })
+  }
 
   passVal(): FormGroup{
     return this.fb.group(
@@ -59,7 +61,7 @@ create(){
             ),
             Validators.minLength(8)
           ])
-        ],        
+        ],         
       }
     );
   }

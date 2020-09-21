@@ -7,10 +7,9 @@ import { NumericOnlyDirective } from './Directives/numeric-only.directive';
 import { UsernameDirective } from './Directives/username.directive';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-
   {path: 'product-form', component: ProductFormComponent}
 ];
 
@@ -26,7 +25,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,    
+    RouterModule.forChild(routes)
   ],
   exports: [
     ProductFormComponent,

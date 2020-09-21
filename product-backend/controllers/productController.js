@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import product from '../models/productModel';
 
+const productService = require('../routes/index');
+
 exports.get = (req, res) => {
     product.findById(req.params.id, (err, item) => {
         if(err){
@@ -41,11 +43,12 @@ exports.update = (req, res) => {
                 res.send(err);
             }
 
-            res.json(item);
+            res.json({status:200,item});
         });
 };
 
 exports.delete = (req, res) => {
+    console.log("======>",'here',req.params.id)
     product.remove({
         _id: req.params.id
     }, (err) => {

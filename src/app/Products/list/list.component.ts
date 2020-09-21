@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { Product } from 'src/app/Services/product.interface';
+import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  product: Product;
+  errorMessage: '';
+  products: any;
 
-  ngOnInit(): void {
+  pro = null;
+  
+
+  constructor(private productService: ProductService, private router: Router) {
+      //this.product = this.productService.userValue;
+  }
+
+  ngOnInit(){
+    this.productService.getAll()
+    .pipe(first())
+    .subscribe(products => this.products = products);
+  }
+
+  deleteProduct(id: string) {
+    console.log('i am here', id);
+    this.productService.delete(id).pipe(first()).subscribe(() => {
+          this.products = this.products.filter(x => x._id !== id);
+        });
+}
+
+  onHttpError(error: any): void {
+    throw new Error('Method not implemented.');
   }
 
 }

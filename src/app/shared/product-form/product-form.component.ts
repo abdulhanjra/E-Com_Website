@@ -48,10 +48,14 @@ export class ProductFormComponent implements OnInit {
     }
     this.loading = true;
     this.productService.addProduct(this.form.value)
+        .pipe(first())
         .subscribe(
           (result:any) => {
             if(result.status==200){
-              this.successMessage="Product added successfully";
+              console.log("In dtatus 200 condition")
+              this.successMessage="Product updated successfully";
+              this.router.navigate(['/products']);
+              //this.productService.saveUser(result.body);      //for localstorage
             }
           },
           error => this.onHttpError(error)

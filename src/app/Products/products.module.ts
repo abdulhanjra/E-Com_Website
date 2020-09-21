@@ -9,7 +9,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-
   {path: 'create', component: CreateComponent},
   {path: 'detail/:id', component: DetailComponent},
   {path: 'edit/:id', component: EditComponent},
@@ -27,6 +26,9 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class ProductsModule { }
