@@ -4,50 +4,72 @@
         <!-- Alphabets Only -->
         <div class="form-group">
             <label for="alpha">Only Alphabets</label>
-            <input type="text" name="alpha" id="alpha" formControlName = "alpha" class = "form-control"
+            <input type="text" name="alpha" id="alpha" formControlName = "alpha" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.alpha.errors}"
             placeholder="Enter only Alphabets" appAlphaOnly/>
+            <div *ngIf = "submitted && f.alpha.invalid" class="invalid-feedback">
+              <div *ngIf = "f.alpha.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- Only Alphanumeric -->
         <div class="form-group">
             <label for="alphanumeric">Only Alphanumeric</label>
-            <input type="text" name="alphanumeric" id="alphanumeric" formControlName = "alphanumeric" class = "form-control"
+            <input type="text" name="alphanumeric" id="alphanumeric" formControlName = "alphanumeric" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.alphanumeric.errors}"
             placeholder="Enter only Alphabets and Numbers" appAlphaNumericOnly/>
+            <div *ngIf = "submitted && f.alphanumeric.invalid" class="invalid-feedback">
+              <div *ngIf = "f.alphanumeric.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- Numerics Only -->
         <div class="form-group">
             <label for="numeric">Only Numerics</label>
-            <input type="text" name="numeric" id="numeric" formControlName = "numeric" class = "form-control"
+            <input type="text" name="numeric" id="numeric" formControlName = "numeric" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.numeric.errors}"
             placeholder="Enter only Numbers" appNumericOnly/>
+            <div *ngIf = "submitted && f.numeric.invalid" class="invalid-feedback">
+              <div *ngIf = "f.numeric.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- Alphabets and Spaces only -->
         <div class="form-group">
             <label for="alphaspace">Only Alphabets and Spaces</label>
-            <input type="text" name="alphaspace" id="alphaspace" formControlName = "alphaspace" class = "form-control"
+            <input type="text" name="alphaspace" id="alphaspace" formControlName = "alphaspace" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.alphaspace.errors}"
             placeholder="Enter only Alphabets and Spaces" appAlphaSpaceOnly/>
+            <div *ngIf = "submitted && f.alphaspaceinvalid" class="invalid-feedback">
+              <div *ngIf = "f.alphaspace.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- CNIC -->
         <div class="form-group">
             <label for="cnic">CNIC</label>
-            <input type="number" name="cnic" id="cnic" formControlName = "cnic" class = "form-control"
+            <input type="number" name="cnic" id="cnic" maxlength = 13 formControlName = "cnic" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.cnic.errors}"
             placeholder="Enter CNIC without Dashes"/>
+            <div *ngIf = "submitted && f.cnic.invalid" class="invalid-feedback">
+              <div *ngIf = "f.cnic.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- Phone Number -->
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="number" name="phone" id="phone" formControlName = "phone" class = "form-control"
+            <input type="number" name="phone" id="phone" formControlName = "phone" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.phone.errors}"
             placeholder="Enter phone number"/>
+            <div *ngIf = "submitted && f.phone.invalid" class="invalid-feedback">
+              <div *ngIf = "f.phone.errors.required">Field is required</div>
+            </div>
+
         </div>
 
         <!-- Username -->
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="username" name="username" id="username" formControlName = "username" class = "form-control"
+            <input type="username" name="username" id="username" formControlName = "username" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.username.errors}"
             placeholder="Enter only Alphabets, Underscores or Dashes" appUsername/>
+            <div *ngIf = "submitted && f.username.invalid" class="invalid-feedback">
+              <div *ngIf = "f.username.errors.required">Field is required</div>
+            </div>
         </div>
 
         <!-- Password -->

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from './product.interface';
+import { User } from './register.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,18 @@ export class ProductService {
 
 
   // For localStorage
-  saveUser(product){
-    this.currentUserSubject.next(product);
+  saveUser(user){
+    this.currentUserSubject.next(user);
     localStorage.removeItem('currentUser');
-    localStorage.setItem('currentUser', JSON.stringify(product));
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
-  signUp(product: Product) {
-    return this.http.post(`http://127.0.0.1:3000/products/register`, product, { observe: 'response' });
+  signUp(user: User) {
+    return this.http.post(`http://127.0.0.1:4000/api/users/register`, user, { observe: 'response' });
+  }
+
+  signIn(username, password) {
+    return this.http.post(`http://127.0.0.1:4000/api/users/authenticate`,  {username, password} , { observe: 'response' });
   }
   
   addProduct(product: Product) {
@@ -55,7 +60,7 @@ export class ProductService {
         }));
 }
 
-  public get userValue(): Product {
+  public get userValue(): User {
     return this.currentUserSubject.value;
   }
 
@@ -70,5 +75,11 @@ export class ProductService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
+  logout() :void {    
+    localStorage.setItem('isLoggedIn','false');    
+    localStorage.removeItem('token');    
+    localStorage.removeItem('currentUser');
+  } 
 
 }

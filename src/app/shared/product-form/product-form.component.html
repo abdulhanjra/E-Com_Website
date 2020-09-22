@@ -7,6 +7,9 @@
             <label for="name">Product Name</label>
             <input type="text" name="name" id="name" formControlName = "name" class = "form-control"
             [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+            <div *ngIf = "submitted && f.name.invalid" class="invalid-feedback">
+                <div *ngIf = "f.name.errors.required">Name is required</div>
+            </div>
         </div>
 
         <!-- Category -->
@@ -14,13 +17,19 @@
             <label for="category">Category</label>
             <input type="text" name="category" id="category" formControlName = "category" class = "form-control"
             [ngClass]="{ 'is-invalid': submitted && f.category.errors }"/>
+            <div *ngIf = "submitted && f.category.invalid" class="invalid-feedback">
+                <div *ngIf = "f.category.errors.required">Category is required</div>
+            </div>
         </div>
 
         <!-- Price -->
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="text" name="price" id="price" formControlName = "price" class = "form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.price.errors }"/>
+            <input type="number" name="price" id="price" formControlName = "price" class = "form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.price.errors}" appNumericOnly/>
+            <div *ngIf = "submitted && f.price.invalid" class="invalid-feedback">
+                <div *ngIf = "f.price.errors.required">Price is required</div>
+            </div>
         </div>
 
         <!-- Tags -->
@@ -28,6 +37,9 @@
             <label for="tags">Tags</label>
             <input type="text" name="tags" id="tags" formControlName = "tags" class = "form-control"
             [ngClass]="{ 'is-invalid': submitted && f.tags.errors }"/>
+            <div *ngIf = "submitted && f.tags.invalid" class="invalid-feedback">
+                <div *ngIf = "f.tags.errors.required">Tags are required</div>
+            </div>
         </div>
 
         <!-- Description -->
@@ -35,6 +47,9 @@
             <label for="description">Description</label>
             <input type="text" name="description" id="description" formControlName = "description" class = "form-control"
             [ngClass]="{ 'is-invalid': submitted && f.description.errors }"/>
+            <div *ngIf = "submitted && f.description.invalid" class="invalid-feedback">
+                <div *ngIf = "f.description.errors.required">Description is required</div>
+            </div>
         </div>
 
         <span class="text-success" *ngIf="successMessage">{{successMessage}}</span>

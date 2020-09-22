@@ -8,6 +8,7 @@ import { UsernameDirective } from './Directives/username.directive';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { PhoneMaskDirective } from './Directives/phone.directive';
 
 const routes: Routes = [
   {path: 'product-form', component: ProductFormComponent}
@@ -20,7 +21,8 @@ const routes: Routes = [
     NumericOnlyDirective,
     AlphaNumericOnlyDirective,
     AlphaSpaceOnlyDirective,
-    UsernameDirective
+    UsernameDirective,
+    PhoneMaskDirective
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ const routes: Routes = [
     AlphaNumericOnlyDirective,
     AlphaSpaceOnlyDirective,
     UsernameDirective,
+    PhoneMaskDirective,
     FormsModule,
     ReactiveFormsModule
   ]

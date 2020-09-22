@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { ProductService } from 'src/app/Services/product.service';
@@ -40,11 +40,11 @@ export class EditComponent implements OnInit {
 
   create(){
     this.form = this.formBuilder.group({
-      name: [''],
-      category: [''],
-      price: [''],
-      tags: [''],
-      description: ['']
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      price: ['', Validators.required],
+      tags: ['', Validators.required],
+      description: ['', Validators.required]
     }); 
   }
 

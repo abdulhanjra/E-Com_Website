@@ -1,7 +1,7 @@
 <h2>Product Detail</h2>
 <hr>
-<h4>Name: </h4>
-<h4>Category: </h4>
-<h4>price: </h4>
-<h4>Tags: </h4>
-<h4>Description: </h4>
+<h4>Name: {{products.name}}</h4>
+<h4>Category: {{products.category}}</h4>
+<h4>price: {{products.price | currency: 'USD':"symbol"}}</h4>
+<h4>Tags: {{products.tags}}</h4>
+<h4>Description: {{products.description}}</h4>

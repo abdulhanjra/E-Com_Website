@@ -9,6 +9,7 @@ import { PasswordValidator } from 'src/app/shared/Validators/password-validator'
 })
 export class MyFormComponent implements OnInit {
   public form: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder){
     //this.form = this.passVal();
@@ -17,21 +18,27 @@ export class MyFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.create();
-    this.passVal()
+    this.passVal();
   }
 
   create(){
       this.form = this.fb.group({
-        alpha: [''],
-        alphanumeric: [''],
-        numeric: [''],
-        alphaspace: [''],
-        cnic: [''],
-        phone: [''],
-        username: [''],
-        password: ['']
+        alpha: ['', Validators.required],
+        alphanumeric: ['', Validators.required],
+        numeric: ['', Validators.required],
+        alphaspace: ['', Validators.required],
+        cnic: ['', Validators.required],
+        phone: ['', Validators.required],
+        username: ['', Validators.required],
+        password: ['', Validators.required]
       })
   }
+
+  public mask = {
+    guide: true,
+    showMask: true,
+    mask: [/\d/,/\d/,/\d/,/\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/]
+  };
 
   passVal(): FormGroup{
     return this.fb.group(
@@ -67,11 +74,16 @@ export class MyFormComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.form.invalid) {
+        return;
+    }
     // do signup or something
     console.log(this.form.value);
   }
-  // get f (){
-  //   return this.form.controls;
-  // }
+  get f (){
+    return this.form.controls;
+  }
 
 }

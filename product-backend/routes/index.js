@@ -9,4 +9,7 @@ export default(app) => {
         .get(products.get)
         .put(products.update)
         .delete(products.delete);
+
+    // app.route('/users')
+    //     .post(products.post);
 };

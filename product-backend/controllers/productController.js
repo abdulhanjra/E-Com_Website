@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import product from '../models/productModel';
 
-const productService = require('../routes/index');
+
 
 exports.get = (req, res) => {
     product.findById(req.params.id, (err, item) => {

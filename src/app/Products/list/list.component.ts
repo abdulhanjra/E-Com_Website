@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Product } from 'src/app/Services/product.interface';
 import { ProductService } from 'src/app/Services/product.service';
+import { User } from 'src/app/Services/register.interface';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
+  user: User;
   product: Product;
   errorMessage: '';
   products: any;
@@ -19,7 +20,7 @@ export class ListComponent implements OnInit {
   
 
   constructor(private productService: ProductService, private router: Router) {
-      //this.product = this.productService.userValue;
+      this.user = this.productService.userValue;
   }
 
   ngOnInit(){
@@ -29,11 +30,17 @@ export class ListComponent implements OnInit {
   }
 
   deleteProduct(id: string) {
-    console.log('i am here', id);
+    // console.log('i am here', id);
     this.productService.delete(id).pipe(first()).subscribe(() => {
           this.products = this.products.filter(x => x._id !== id);
         });
-}
+  }
+
+  logout() {  
+    console.log('logout');  
+    this.productService.logout();  
+    this.router.navigate(['/signin']);  
+  }  
 
   onHttpError(error: any): void {
     throw new Error('Method not implemented.');
