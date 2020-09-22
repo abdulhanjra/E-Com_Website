@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import product from '../models/productModel';
+import order from '../models/orderModel'
 
 
 exports.get = (req, res) => {
@@ -61,14 +62,33 @@ exports.delete = (req, res) => {
     });
 };
 
-// exports.createOrder = (req, res) => {
-//     const newOrder = new order(req.body);
+exports.createOrder = (req, res) => {
+    const newOrder = new order(req.body);
 
-//     newOrder.save((err, item) => {
-//         if (err) {
-//             res.send(err);
-//         }
+    newOrder.save((err, item) => {
+        if (err) {
+            res.send(err);
+        }
 
-//         res.json(item);
-//     });
-// }
+        res.json(item);
+    });
+}
+
+exports.getOrders = (req, res) => {
+    order.find({}, (err, item) => {
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(item);
+    });
+}
+
+exports.getByID = (req, res) => {
+    order.findById(req.params.id, (err, item) => {
+        if(err){
+            res.send(err);
+        }
+        res.json(item);        
+    });
+}
