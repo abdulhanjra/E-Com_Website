@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import routes from './routes/index.js';
-import users from './routes/user.service'
 const cors = require('cors');
 
 const app = express();
@@ -42,6 +41,5 @@ app.use((err, req, res, next) => {
     */
 
 routes(app);
-users(app);
 
 export default app;

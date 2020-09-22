@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import product from '../models/productModel';
 
 
-
 exports.get = (req, res) => {
     product.findById(req.params.id, (err, item) => {
         if(err){
@@ -61,3 +60,15 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+// exports.createOrder = (req, res) => {
+//     const newOrder = new order(req.body);
+
+//     newOrder.save((err, item) => {
+//         if (err) {
+//             res.send(err);
+//         }
+
+//         res.json(item);
+//     });
+// }

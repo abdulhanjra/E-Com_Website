@@ -10,6 +10,10 @@ export default(app) => {
         .put(products.update)
         .delete(products.delete);
 
-    // app.route('/users')
-    //     .post(products.post);
+    // app.route('/orders')
+    //     .get(orders.getOrders)
+    //     .post(orders.createOrder)
+
+    // app.route('/orders/:id')
+    //     .get(orders.getByID)
 };
