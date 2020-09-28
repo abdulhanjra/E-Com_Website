@@ -1,8 +1,52 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="https://i.pinimg.com/736x/b1/ba/4b/b1ba4b36648a3cfe001907961263d264.jpg" width="150" height="350" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Spooky Doll</h5>
-      <a href="#" class="btn btn-primary">Details</a>
-      <a href="#" class="btn btn-primary">Add to Cart</a>
-    </div>
-  </div>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  </head>
+
+  <body>
+	
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+						</div>						
+					</div>
+					<div class="details col-md-6">
+            <h3 class="product-title">{{products.name}}</h3>
+            <h4 class="category">Category: {{products.category}}</h4>
+            <h4 class="price">Price: <span>{{products.price}}</span></h4>
+            <h4 class="tags">Tags: {{products.tags}}</h4>
+            <h4 class="description">Description: {{products.description}}</h4>
+						
+						<div class="action">
+              <a class="add-to-cart btn btn-default" href="/cart-page">add to cart</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

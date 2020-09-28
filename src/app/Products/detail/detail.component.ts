@@ -21,8 +21,8 @@ export class DetailComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.create();
 
-    this.productService.getById(this.id).pipe(first()).subscribe(products => {
-      this.products = products;    
+    this.productService.getById(this.id).pipe(first()).subscribe(product => {
+      this.products = product;    
     });
   }
 

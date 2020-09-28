@@ -62,7 +62,7 @@ export class SigninComponent implements OnInit {
               this.router.navigate(['/products']);  
               this.productService.saveUser(result.body);              
               localStorage.setItem('isLoggedIn', "true");  
-              localStorage.setItem('token', this.f.username.value); 
+              // localStorage.setItem('token', this.f.username.value); 
              }
           },
             error => this.onHttpError(error)

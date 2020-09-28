@@ -1,1 +1,67 @@
-<p>my-order works!</p>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+</head>
+<body>	
+
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Order ID</th>
+							<th style="width:10%">Product</th>
+                            <th style="width:8%">Price</th>
+                            <th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Total</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-10">
+										<h4 class="nomargin">Product ID</h4>
+									</div>
+								</div>
+                            </td>
+                            <td data-th="Product">
+								<div class="row">
+									<div class="col-sm-10">
+										<h4 class="nomargin">Product Name</h4>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price" id="price">Product Price</td>
+							<td data-th="Quantity" id="quantity">
+								Quantity here
+							</td>
+							<td data-th="Subtotal" class="text-center"><span id = "result"></span>1.99</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="visible-xs">
+							<td class="text-center"><strong>Total 1.99</strong></td>
+						</tr>
+						<tr>
+							<td><a></a></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td></td>
+							<td><a href="/order-details" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+						</tr>
+					</tfoot>
+				</table>
+</div>
+
+</body>
+</html>	

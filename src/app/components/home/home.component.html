@@ -1,8 +1,18 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="https://i.pinimg.com/736x/b1/ba/4b/b1ba4b36648a3cfe001907961263d264.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Spooky Doll</h5>
-      <a href="/product-detail" class="btn btn-primary">Details</a>
-      <a href="/cart-page" class="btn btn-primary">Add to Cart</a>
+<div class="row">
+  <div class="column" *ngFor = "let product of products">
+    <div class="card">
+      <img class="card-img-top" src="https://i.pinimg.com/736x/b1/ba/4b/b1ba4b36648a3cfe001907961263d264.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <a class="btn btn-primary" href = "product-detail/{{product._id}}">Details</a>
+        <div class="divider"></div>
+        <a href="cart-page/{{product._id}}" class="btn btn-primary">Add to Cart</a>
+      </div>
     </div>
   </div>
+</div>
+
+
+
+
+
