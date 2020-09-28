@@ -3,6 +3,12 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import routes from './routes/index.js';
+
+
+import  jwt from "./_helpers/jwt";
+import errorHandler from "./_helpers/error-handler";
+
+
 const cors = require('cors');
 
 const app = express();
@@ -39,7 +45,8 @@ app.use((err, req, res, next) => {
 /**
     * Register the routes
     */
-
+app.use(jwt());
 routes(app);
-
+// global error handler
+app.use(errorHandler);
 export default app;

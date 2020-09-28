@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import product from '../models/productModel';
 import order from '../models/orderModel'
+const userService = require("../models/userService");
 
 
 exports.get = (req, res) => {
@@ -8,7 +9,7 @@ exports.get = (req, res) => {
         if(err){
             res.send(err);
         }
-        res.json(item);        
+        res.json(item);
     });
 };
 
@@ -63,26 +64,26 @@ exports.delete = (req, res) => {
 };
 
 exports.createOrder = (req, res) => {
+
     let newOrder = new order(req.body);
-    newOrder.userId
-
-
+    newOrder.userId = req.user.sub;
+    console.log("req.user.sub", req.user.sub);
     newOrder.save((err, item) => {
         if (err) {
             res.send(err);
         }
 
         res.json(item);
-    });
+    })
 }
 
 exports.getOrders = (req, res) => {
-    order.find({}, (err, item) => {
-        if (err) {
-            res.send(err);
-        }
+    order.find({ userId: req.user.sub }, (err, item) => {
+      if (err) {
+        res.send(err);
+      }
 
-        res.json(item);
+      res.json(item);
     });
 }
 
@@ -91,6 +92,6 @@ exports.getByID = (req, res) => {
         if(err){
             res.send(err);
         }
-        res.json(item);        
+        res.json(item);
     });
 }
