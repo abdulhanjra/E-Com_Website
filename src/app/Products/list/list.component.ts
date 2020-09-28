@@ -27,6 +27,7 @@ export class ListComponent implements OnInit {
     this.productService.getAll()
     .pipe(first())
     .subscribe(products => this.products = products);
+    
   }
 
   deleteProduct(id: string) {

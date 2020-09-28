@@ -13,12 +13,15 @@ export class ProductService {
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  public currentProductSubject: BehaviorSubject<any>;
+  public currentProductSubject: BehaviorSubject<Product[]>;
   public currentProduct: Observable<any>;
 
   constructor(private http: HttpClient){
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+
+    this.currentProductSubject = new BehaviorSubject<Product[]>(JSON.parse(localStorage.getItem('currentProduct')));
+  
   }
 
 
@@ -36,11 +39,11 @@ export class ProductService {
   }
 
   signUp(user: User) {
-    return this.http.post(`http://127.0.0.1:4000/api/users/register`, user, { observe: 'response' });
+    return this.http.post(`http://127.0.0.1:3000/users/register`, user, { observe: 'response' });
   }
 
   signIn(username, password) {
-    return this.http.post(`http://127.0.0.1:4000/api/users/authenticate`,  {username, password} , { observe: 'response' });
+    return this.http.post(`http://127.0.0.1:3000/users/authenticate`,  {username, password} , { observe: 'response' });
   }
   
   addProduct(product: Product) {

@@ -37,4 +37,5 @@ export class HomeComponent implements OnInit {
           product.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
+  
 }

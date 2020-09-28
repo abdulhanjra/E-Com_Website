@@ -63,7 +63,9 @@ exports.delete = (req, res) => {
 };
 
 exports.createOrder = (req, res) => {
-    const newOrder = new order(req.body);
+    let newOrder = new order(req.body);
+    newOrder.userId
+
 
     newOrder.save((err, item) => {
         if (err) {

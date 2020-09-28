@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { Product } from 'src/app/Services/product.interface';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
@@ -12,16 +13,14 @@ export class CartPageComponent implements OnInit {
   num1: any;
   num2: any;
   id: string;
+  cartProducts: Product[] = [];
   products: import("c:/Users/user/Desktop/Product/product-App/src/app/Services/product.interface").Product;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-
-    this.productService.getById(this.id).pipe(first()).subscribe(product => {
-      this.products = product;    
-    });
+    this.productService.currentProductSubject
+			.subscribe(items => this.cartProducts = items);
   }
 
   // multiplyBy()
