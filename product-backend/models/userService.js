@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../_helpers/db');
@@ -16,10 +16,12 @@ module.exports = {
 async function authenticate({ username, password }) {
     const user = await User.findOne({ username });
     if (user && bcrypt.compareSync(password, user.hash)) {
-        const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+        const token = jwt.sign({ sub: user.id }, config.secret, {
+          expiresIn: "7d",
+        });
         return {
-            ...user.toJSON(),
-            token
+          user,
+          token,
         };
     }
 }
@@ -34,7 +36,7 @@ async function getById(id) {
 
 async function create(userParam) {
     // validate
- 
+
     if (await User.findOne({ username: userParam.username })) {
         throw 'Username "' + userParam.username + '" is already taken';
     }

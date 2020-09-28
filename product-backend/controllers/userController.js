@@ -3,31 +3,6 @@ const router = express.Router();
 const userService = require('../models/userService');
 var bcrypt = require('bcrypt');
 
-// routes
-router.get('/test', (req,res, next)=> {
-    res.send('hello here')
-} );
-
-router.post('/signup', function(req, res){
-    const password = req.body.password;
-    const saltRounds = 10;
-    bcrypt.hash(password, saltRounds, function(err, hash){
-        req.body.password = hash;
-        userModel.signup(req.body, function(err, result){
-            res.json({data: result, error: err})
-        })
-    }) 
-})
-
-router.post('/authenticate', authenticate);
-router.post('/register', register);
-router.get('/', getAll);
-router.get('/current', getCurrent);
-router.get('/:id', getById);
-router.put('/:id', update);
-router.delete('/:id', _delete);
-
-module.exports = router; 
 
 function authenticate(req, res, next) {
     userService.authenticate(req.body)
@@ -36,7 +11,7 @@ function authenticate(req, res, next) {
 }
 
 function register(req, res, next) {
-    
+
     userService.create(req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
@@ -71,3 +46,13 @@ function _delete(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
+module.exports = {
+  authenticate,
+  register,
+  getAll,
+  getCurrent,
+  getById,
+  update,
+  delete: _delete,
+};

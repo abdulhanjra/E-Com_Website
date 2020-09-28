@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
 import routes from './routes/index.js';
-import routers from './models/userService'
 const cors = require('cors');
 
 const app = express();
@@ -15,7 +14,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
     */
 
 mongoose.connect('mongodb://localhost/product-db');
- 
+
 /**
     * Middleware
     */
@@ -42,6 +41,5 @@ app.use((err, req, res, next) => {
     */
 
 routes(app);
-routers(app);
 
 export default app;

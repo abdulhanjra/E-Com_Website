@@ -1,6 +1,6 @@
 import products from '../controllers/productController';
-import orders from '../controllers/productController'
-
+import orders from '../controllers/productController';
+import users from '../controllers/userController';
 export default(app) => {
     app.route('/products')
         .get(products.getAll)
@@ -17,4 +17,12 @@ export default(app) => {
 
     app.route('/orders/:id')
         .get(orders.getByID)
+
+    app.post("/authenticate", users.authenticate);
+    app.post("/register", users.register);
+    app.get("/", users.getAll);
+    app.get("/current", users.getCurrent);
+    app.get("/:id", users.getById);
+    app.put("/:id", users.update);
+    app.delete("/:id", users.delete);
 };
