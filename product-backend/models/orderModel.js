@@ -12,9 +12,10 @@ const orderSchema = new Schema({
     {
       productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Product",
       },
-      qty: { type: Number, default: 0 },
+      quantity: { type: Number, default: 0 },
+
     },
   ],
   date: { type: Date, default: Date.now },

@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CartItem } from './cart.interface';
 import { Product } from './product.interface';
 import { User } from './register.interface';
 
@@ -13,15 +14,10 @@ export class ProductService {
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  public currentProductSubject: BehaviorSubject<Product[]>;
-  public currentProduct: Observable<any>;
-
   constructor(private http: HttpClient){
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
 
-    this.currentProductSubject = new BehaviorSubject<Product[]>(JSON.parse(localStorage.getItem('currentProduct')));
-  
   }
 
 
@@ -30,12 +26,6 @@ export class ProductService {
     this.currentUserSubject.next(user);
     localStorage.removeItem('currentUser');
     localStorage.setItem('currentUser', JSON.stringify(user));
-  }
-
-  saveProduct(product){
-    this.currentProductSubject.next(product);
-    localStorage.removeItem('currentProduct');
-    localStorage.setItem('currentProduct', JSON.stringify(product));
   }
 
   signUp(user: User) {
@@ -70,7 +60,7 @@ export class ProductService {
         .pipe(map(x => {
             return x;
         }));
-}
+  }
 
   public get userValue(): User {
     return this.currentUserSubject.value;
@@ -91,7 +81,7 @@ export class ProductService {
   logout() :void {    
     localStorage.setItem('isLoggedIn','false');    
     // localStorage.removeItem('token');   in signin   
-    localStorage.removeItem('currentProduct');
+    localStorage.removeItem('currentCart');
     localStorage.removeItem('currentUser');    
   } 
 

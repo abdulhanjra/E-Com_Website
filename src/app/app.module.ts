@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { MyOrderComponent } from './orders/my-order/my-order.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { BaseInterceptor } from './Services/base.interceptor';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
     HttpClientModule
   ],
   providers: [
-    AuthGuard    
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]
 })

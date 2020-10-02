@@ -19,21 +19,14 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.create();
 
-    this.productService.getById(this.id).pipe(first()).subscribe(product => {
-      this.products = product;    
-    });
+    this.productService.getById(this.id).pipe(first()).subscribe((response: any) => {
+      if(+response.status === 200){
+        this.products = response.item;
+        // console.log(this.products);
+      }
+    }  );
   }
 
-  create(){
-    this.form = this.formBuilder.group({
-      name: [''],
-      category: [''],
-      price: [''],
-      tags: [''],
-      description: ['']
-    }); 
-  }
 
 }

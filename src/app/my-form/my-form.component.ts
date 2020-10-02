@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { PasswordValidator } from 'src/app/shared/Validators/password-validator';
+import { EmailValidator } from 'src/app/shared/Validators/email-validator';
 
 @Component({
   selector: 'app-my-form',
@@ -27,6 +28,8 @@ export class MyFormComponent implements OnInit {
         alphanumeric: ['', Validators.required],
         numeric: ['', Validators.required],
         alphaspace: ['', Validators.required],
+        withoutspace: ['', Validators.required],
+        email: ['', [Validators.required, EmailValidator.isValidMailFormat]],
         cnic: ['', Validators.required],
         phone: ['', Validators.required],
         username: ['', Validators.required],

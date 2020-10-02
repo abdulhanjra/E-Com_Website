@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { CartItem } from 'src/app/Services/cart.interface';
+import { CartService } from 'src/app/Services/cart.service';
 import { Product } from 'src/app/Services/product.interface';
 import { ProductService } from 'src/app/Services/product.service';
 
@@ -10,24 +12,72 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./cart-page.component.css']
 })
 export class CartPageComponent implements OnInit {
-  num1: any;
-  num2: any;
-  id: string;
-  cartProducts: Product[] = [];
+  public storage: Storage;
+
+  cartItems: CartItem[] = [];
+  cart: CartItem;
+  subTotal = 0;
+  total = 0;
+
+  currentProduct: Product = null;
   products: import("c:/Users/user/Desktop/Product/product-App/src/app/Services/product.interface").Product;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.productService.currentProductSubject
-			.subscribe(items => this.cartProducts = items);
+  constructor(private productService: ProductService, 
+              private route: ActivatedRoute, 
+              private cartService: CartService,
+              private router: Router) {
+    
   }
 
-  // multiplyBy()
-  // {
-  //   this.num1 = document.getElementById("price");
-  //   this.num2 = document.getElementById("quantity");
-  //   document.getElementById("result").innerHTML = this.num1 * this.num2;
-  // }
+  ngOnInit(): void {
+    this.cartService.currentCartSubject
+      .subscribe(items => this.cartItems = items);  
+    
+    // console.log(this.cartItems);
+  }
+
+  removeItem(cart){
+    this.cartService.removeToCart(cart.productId["_id"]);
+  }
+  
+  getSubTotal(cartItem) {
+		if (cartItem == null) {
+			return 0;
+    }
+    this.subTotal = 0;
+			this.subTotal = (cartItem.productId["price"] * cartItem.quantity);
+		return this.subTotal;
+  }
+  
+  getTotal() {
+		if (this.cartItems == null || this.cartItems.length == 0) {
+			return 0;
+    }
+    this.total = 0;
+		for (let i = 0; i < this.cartItems.length; i++) {
+			this.total += (this.cartItems[i].productId["price"] * this.cartItems[i].quantity);
+		}
+		return this.total;
+  }
+  
+  onClick(){
+    this.cartService.createOrder({products:this.cartItems})
+        .pipe(first())
+        .subscribe(
+          (result:any) => {
+            if(result.status==200){
+              console.log("In status 200 condition")
+              console.log(this.cartItems);
+              localStorage.removeItem('currentCart');
+              this.router.navigate(['my-order']);
+            }
+          },
+          error => this.onHttpError(error)
+        );
+  }
+
+  onHttpError(error: any): void {
+    throw new Error('Method not implemented.');
+  }
 
 }

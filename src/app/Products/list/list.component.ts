@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
   product: Product;
   errorMessage: '';
   products: any;
+  users: any;
 
   pro = null;
   
@@ -28,6 +29,7 @@ export class ListComponent implements OnInit {
     .pipe(first())
     .subscribe(products => this.products = products);
     
+    // console.log(this.user);
   }
 
   deleteProduct(id: string) {

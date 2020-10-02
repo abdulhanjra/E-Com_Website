@@ -1,12 +1,13 @@
 <div class="row">
   <div class="column" *ngFor = "let product of products">
     <div class="card">
-      <img class="card-img-top" src="https://i.pinimg.com/736x/b1/ba/4b/b1ba4b36648a3cfe001907961263d264.jpg" alt="Card image cap">
+      <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0256/3404/6026/products/Blackmirrormockup3_600x.jpg?v=1595243266" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{product.name}}</h5>
         <a class="btn btn-primary" href = "product-detail/{{product._id}}">Details</a>
         <div class="divider"></div>
-        <a href="cart-page" class="btn btn-primary">Add to Cart</a>
+        <a class="strong">Price: {{product.price | currency : 'USD'}}</a>
+        <!-- <a class="btn btn-primary" (click)="addToCart()">Add to Cart</a> -->
       </div>
     </div>
   </div>

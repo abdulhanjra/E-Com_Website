@@ -36,15 +36,36 @@
             <label for="alphaspace">Only Alphabets and Spaces</label>
             <input type="text" name="alphaspace" id="alphaspace" formControlName = "alphaspace" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.alphaspace.errors}"
             placeholder="Enter only Alphabets and Spaces" appAlphaSpaceOnly/>
-            <div *ngIf = "submitted && f.alphaspaceinvalid" class="invalid-feedback">
+            <div *ngIf = "submitted && f.alphaspace.invalid" class="invalid-feedback">
               <div *ngIf = "f.alphaspace.errors.required">Field is required</div>
             </div>
+        </div>
+
+        <!-- Without Spaces -->
+        <div class="form-group">
+          <label for="withoutspace">Without Spaces</label>
+          <input name="withoutspace" id="withoutspace" formControlName = "withoutspace" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.withoutspace.errors}"
+          placeholder="No spaces allowed" appWithoutSpace/>
+          <div *ngIf = "submitted && f.withoutspace.invalid" class="invalid-feedback">
+            <div *ngIf = "f.withoutspace.errors.required">Field is required</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input name="email" id="email" formControlName = "email" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.email.errors}"
+          placeholder="Enter Email"/>
+          <div *ngIf = "submitted && f.email.invalid" class="invalid-feedback">
+            <div *ngIf = "f.email.errors.required">Field is required</div>
+            <div *ngIf = "f.email.errors.email">Invalid Format</div>
+          </div>
         </div>
 
         <!-- CNIC -->
         <div class="form-group">
             <label for="cnic">CNIC</label>
-            <input type="number" name="cnic" id="cnic" maxlength = 13 formControlName = "cnic" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.cnic.errors}"
+            <input type="number" name="cnic" id="cnic" formControlName = "cnic" class = "form-control" class = "form-control" [ngClass] = "{'is-invalid': submitted && f.cnic.errors}"
             placeholder="Enter CNIC without Dashes"/>
             <div *ngIf = "submitted && f.cnic.invalid" class="invalid-feedback">
               <div *ngIf = "f.cnic.errors.required">Field is required</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
   selector: 'app-my-order',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-order.component.css']
 })
 export class MyOrderComponent implements OnInit {
+  orders: any;
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getAllOrders()
+    .pipe(first())
+    .subscribe(list => this.orders = list);
+
+    console.log(this.orders);
   }
 
 }

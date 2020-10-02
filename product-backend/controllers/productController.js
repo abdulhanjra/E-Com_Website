@@ -9,7 +9,7 @@ exports.get = (req, res) => {
         if(err){
             res.send(err);
         }
-        res.json(item);
+        res.json({status:200,item});
     });
 };
 
@@ -80,7 +80,9 @@ exports.createOrder = (req, res) => {
 exports.getOrders = (req, res) => {
     order.find({ userId: req.user.sub }, (err, item) => {
       if (err) {
+          console.log(err);
         res.send(err);
+
       }
 
       res.json(item);
