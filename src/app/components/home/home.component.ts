@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     
     console.log(this.products);
-    this.cartService.addToCart({product:this.products, quantity: 1});
+    this.cartService.addToCart({product:this.products, quantity: 1, price: this.product.price});
     this.router.navigate(['/cart-page']);
     // this.cartService.addToCart({productId: this.product, 1});
   }

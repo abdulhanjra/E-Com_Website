@@ -78,15 +78,14 @@ exports.createOrder = (req, res) => {
 }
 
 exports.getOrders = (req, res) => {
-    order.find({ userId: req.user.sub }, (err, item) => {
-      if (err) {
-          console.log(err);
-        res.send(err);
+    order.find({ userId: req.user.sub }).populate("userId").populate({ path: 'products', model: 'Product' }) .exec((error, item) => {
+        if (error) {
+            res.send(error);
+        }
+        console.log("=====>",item);
 
-      }
-
-      res.json(item);
-    });
+        res.json(item);
+      });
 }
 
 exports.getByID = (req, res) => {

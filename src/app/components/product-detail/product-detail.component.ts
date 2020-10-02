@@ -39,7 +39,7 @@ export class ProductDetailComponent implements OnInit {
   addToCart() {
     // console.log('add to cart clicked');
     // console.log(this.products);
-    this.cartService.addToCart({product:this.products, quantity: 1});
+    this.cartService.addToCart({product:this.products, quantity: 1, price: this.products.price});
     this.router.navigate(['/cart-page']);
   }
 

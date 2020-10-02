@@ -12,12 +12,12 @@ export class CartService {
     this.currentCartSubject = new BehaviorSubject<CartItem[]>(JSON.parse(localStorage.getItem('currentCart')));
   }
 
-  addToCart({ product, quantity}) {
+  addToCart({ product, quantity, price}) {
     let items: CartItem[] = this.currentCartSubject.value ? this.currentCartSubject.value : [];
     // items.push({ productId: product, quantity: quantity});
     const itemIndex = items.findIndex(item => item.productId._id === product._id);
     if (itemIndex === -1) {
-      items.push({ productId: product, quantity: quantity});
+      items.push({ productId: product, quantity: quantity, price: price});
     }else{
       items[itemIndex].quantity += quantity;
     }
